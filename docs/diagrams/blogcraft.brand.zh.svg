@@ -11,12 +11,16 @@
   </defs>
   <g transform="translate(60 0)">
 
-  <!-- mark: a fountain-pen nib -->
-  <g transform="translate(300 200)">
-    <path d="M -52 -86 L 52 -86 C 62 -24 42 36 0 84 C -42 36 -62 -24 -52 -86 Z"
-          fill="none" stroke="url(#mark)" stroke-width="26" stroke-linejoin="round"/>
-    <path d="M 0 -12 L 0 66" fill="none" stroke="url(#mark)" stroke-width="14" stroke-linecap="round"/>
-    <circle cx="0" cy="-30" r="15" fill="none" stroke="url(#mark)" stroke-width="16"/>
+  <!-- mark: a pen nib mid-stroke, its trail finishing in a check -->
+  <g transform="translate(275 200)">
+    <g transform="rotate(-45) translate(0 -32)">
+      <path d="M -38 -64 Q -58 4 0 88 Q 58 4 38 -64 Q 20 -74 0 -74 Q -20 -74 -38 -64 Z"
+            fill="none" stroke="url(#mark)" stroke-width="22" stroke-linejoin="round"/>
+      <path d="M 0 -6 L 0 76" fill="none" stroke="url(#mark)" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="0" cy="-16" r="13" fill="none" stroke="url(#mark)" stroke-width="14"/>
+    </g>
+    <path d="M 44 46 C 56 60 64 66 74 68 C 92 52 106 34 122 12"
+          fill="none" stroke="url(#mark)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
   <line x1="500" y1="110" x2="500" y2="290" stroke="#047857" stroke-opacity="0.4" stroke-width="4" stroke-linecap="round"/>
