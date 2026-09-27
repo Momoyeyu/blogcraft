@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "blogcraft · Human gates in the loop",
+    "output": "blogcraft.gates.html",
+    "viewBox": [
+      1090,
+      700
+    ],
+    "column_fit": "spread",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "views": [
+      {
+        "id": "gate-outline",
+        "label": "Gate: approve outline",
+        "focus": [
+          "human",
+          "agent",
+          "repo"
+        ],
+        "note": "The agent plans headings, merges, and code slots, but the human rules each decision before a word of prose is written."
+      },
+      {
+        "id": "gate-publish",
+        "label": "Gate: approve publish",
+        "focus": [
+          "human",
+          "agent",
+          "repo",
+          "envs"
+        ],
+        "note": "Nothing is committed or published until the human sees the audit, the verification report, and a clean diff."
+      }
+    ]
+  },
+  "participants": [
+    {
+      "id": "human",
+      "type": "external",
+      "label": "Human"
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "Agent"
+    },
+    {
+      "id": "repo",
+      "type": "cloud",
+      "label": "Blog repo"
+    },
+    {
+      "id": "envs",
+      "type": "database",
+      "label": "GPU hosts"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 315,
+      "label": "Align & outline"
+    },
+    {
+      "from": 325,
+      "to": 490,
+      "label": "Write & verify"
+    },
+    {
+      "from": 500,
+      "to": 650,
+      "label": "Polish & ship"
+    }
+  ],
+  "messages": [
+    {
+      "id": "brief",
+      "from": "human",
+      "to": "agent",
+      "y": 165,
+      "label": "topic + refs + limits",
+      "variant": "default"
+    },
+    {
+      "id": "read",
+      "from": "agent",
+      "to": "repo",
+      "y": 195,
+      "label": "read series posts & conventions",
+      "variant": "emphasis"
+    },
+    {
+      "id": "voice",
+      "from": "repo",
+      "to": "agent",
+      "y": 223,
+      "label": "voice · notation · figure style",
+      "variant": "return"
+    },
+    {
+      "id": "menu",
+      "from": "agent",
+      "to": "human",
+      "y": 262,
+      "label": "outline + merge / topic menu",
+      "variant": "emphasis",
+      "note": "GATE 1 — approve before drafting"
+    },
+    {
+      "id": "pick",
+      "from": "human",
+      "to": "agent",
+      "y": 296,
+      "label": "approve / revise (repeat)",
+      "variant": "security"
+    },
+    {
+      "id": "draftmsg",
+      "from": "agent",
+      "to": "repo",
+      "y": 340,
+      "label": "draft prose + code blocks",
+      "variant": "default"
+    },
+    {
+      "id": "run",
+      "from": "agent",
+      "to": "envs",
+      "y": 372,
+      "label": "run every block: MPS · CUDA",
+      "variant": "default"
+    },
+    {
+      "id": "asserts",
+      "from": "envs",
+      "to": "agent",
+      "y": 402,
+      "label": "asserts pass / fail",
+      "variant": "return"
+    },
+    {
+      "id": "figs",
+      "from": "agent",
+      "to": "repo",
+      "y": 452,
+      "label": "draw SVGs · insert · dual-theme check",
+      "variant": "default"
+    },
+    {
+      "id": "auditmsg",
+      "from": "agent",
+      "to": "human",
+      "y": 520,
+      "label": "audit + verify report + rendered pages",
+      "variant": "emphasis",
+      "note": "GATE 2 — approve before publish"
+    },
+    {
+      "id": "approve",
+      "from": "human",
+      "to": "agent",
+      "y": 553,
+      "label": "hold / commit / publish",
+      "variant": "security"
+    },
+    {
+      "id": "ship",
+      "from": "agent",
+      "to": "repo",
+      "y": 585,
+      "label": "make check · commit (if asked)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "report",
+      "from": "agent",
+      "to": "human",
+      "y": 612,
+      "label": "report: evidence + judgment calls",
+      "variant": "default"
+    }
+  ]
+}

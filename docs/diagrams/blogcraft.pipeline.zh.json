@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "blogcraft · 写作流水线",
+    "subtitle": "两道人工闸门，之间的一切都要验证",
+    "locale": "zh-CN",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1020,
+      430
+    ],
+    "legend": {
+      "mode": "hidden"
+    },
+    "output": "blogcraft.pipeline.zh.html"
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [
+      40,
+      110
+    ],
+    "cols": 5,
+    "cellW": 140,
+    "cellH": 68,
+    "gapX": 60,
+    "gapY": 110
+  },
+  "components": [
+    {
+      "id": "intake",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 0,
+      "type": "frontend",
+      "label": "任务卡",
+      "sublabel": "模式 · 参考 · 范围"
+    },
+    {
+      "id": "outline",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 1,
+      "type": "backend",
+      "label": "大纲",
+      "sublabel": "标题 · 合并 · 代码位"
+    },
+    {
+      "id": "gate1",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 2,
+      "type": "security",
+      "label": "批准大纲？",
+      "sublabel": "逐项裁决"
+    },
+    {
+      "id": "draft",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 3,
+      "type": "backend",
+      "label": "写正文",
+      "sublabel": "系列文风 · 分节代码"
+    },
+    {
+      "id": "verify",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 4,
+      "type": "backend",
+      "label": "跑代码",
+      "sublabel": "MPS · CUDA · 断言"
+    },
+    {
+      "id": "illustrate",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 4,
+      "type": "backend",
+      "label": "配图",
+      "sublabel": "手绘 SVG · 双主题"
+    },
+    {
+      "id": "review",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 3,
+      "type": "backend",
+      "label": "审查",
+      "sublabel": "事实 · 符号 · 一致性"
+    },
+    {
+      "id": "wrap",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 2,
+      "type": "database",
+      "label": "仓库检查",
+      "sublabel": "make check · diff"
+    },
+    {
+      "id": "gate2",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 1,
+      "type": "security",
+      "label": "发布？",
+      "sublabel": "hold · commit · publish"
+    },
+    {
+      "id": "report",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 0,
+      "type": "frontend",
+      "label": "交付报告",
+      "sublabel": "证据 · 可斟酌点"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "01  对齐",
+      "wraps": [
+        "intake",
+        "outline"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "02  闸门",
+      "wraps": [
+        "gate1"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "03  写作",
+      "wraps": [
+        "draft",
+        "verify"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "04  打磨",
+      "wraps": [
+        "illustrate",
+        "review"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "05  发布",
+      "wraps": [
+        "wrap",
+        "gate2",
+        "report"
+      ],
+      "pad": 20
+    }
+  ],
+  "connections": [
+    {
+      "id": "i-o",
+      "from": "intake",
+      "to": "outline"
+    },
+    {
+      "id": "o-g1",
+      "from": "outline",
+      "to": "gate1"
+    },
+    {
+      "id": "revise",
+      "from": "gate1",
+      "to": "outline",
+      "label": "打回",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "top",
+      "via": [
+        [
+          510,
+          74
+        ],
+        [
+          310,
+          74
+        ]
+      ]
+    },
+    {
+      "id": "g1-d",
+      "from": "gate1",
+      "to": "draft",
+      "label": "通过",
+      "variant": "emphasis"
+    },
+    {
+      "id": "d-v",
+      "from": "draft",
+      "to": "verify"
+    },
+    {
+      "id": "v-il",
+      "from": "verify",
+      "to": "illustrate"
+    },
+    {
+      "id": "il-r",
+      "from": "illustrate",
+      "to": "review"
+    },
+    {
+      "id": "r-w",
+      "from": "review",
+      "to": "wrap"
+    },
+    {
+      "id": "w-g2",
+      "from": "wrap",
+      "to": "gate2"
+    },
+    {
+      "id": "changes",
+      "from": "gate2",
+      "to": "review",
+      "label": "修改",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          310,
+          366
+        ],
+        [
+          710,
+          366
+        ]
+      ]
+    },
+    {
+      "id": "g2-rep",
+      "from": "gate2",
+      "to": "report",
+      "label": "通过",
+      "variant": "emphasis"
+    }
+  ]
+}

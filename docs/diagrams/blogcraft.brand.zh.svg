@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="400" viewBox="0 0 1600 400">
+  <defs>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#047857"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#059669"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(60 0)">
+
+  <!-- mark: a fountain-pen nib -->
+  <g transform="translate(300 200)">
+    <path d="M -52 -86 L 52 -86 C 62 -24 42 36 0 84 C -42 36 -62 -24 -52 -86 Z"
+          fill="none" stroke="url(#mark)" stroke-width="26" stroke-linejoin="round"/>
+    <path d="M 0 -12 L 0 66" fill="none" stroke="url(#mark)" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="0" cy="-30" r="15" fill="none" stroke="url(#mark)" stroke-width="16"/>
+  </g>
+
+  <line x1="500" y1="110" x2="500" y2="290" stroke="#047857" stroke-opacity="0.4" stroke-width="4" stroke-linecap="round"/>
+
+  <text x="560" y="222" font-family="'Helvetica Neue', 'SF Pro Display', Arial, sans-serif"
+        font-weight="700" font-size="148" letter-spacing="-5" fill="#065F46">blog<tspan fill="url(#word)">craft</tspan></text>
+  <text x="566" y="292" font-family="'Helvetica Neue', 'SF Pro Display', Arial, sans-serif"
+        font-weight="500" font-size="44" letter-spacing="1" fill="#0F766E">每一稿，过审再发</text>
+  </g>
+</svg>

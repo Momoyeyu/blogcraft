@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "blogcraft · 两道人工闸门",
+    "output": "blogcraft.gates.zh.html",
+    "viewBox": [
+      1090,
+      700
+    ],
+    "column_fit": "spread",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    },
+    "views": [
+      {
+        "id": "gate-outline",
+        "label": "闸门：批准大纲",
+        "focus": [
+          "human",
+          "agent",
+          "repo"
+        ],
+        "note": "标题、合并、代码位由 agent 规划，但每一项都由人来裁决——在写第一个字之前。"
+      },
+      {
+        "id": "gate-publish",
+        "label": "闸门：批准发布",
+        "focus": [
+          "human",
+          "agent",
+          "repo",
+          "envs"
+        ],
+        "note": "在人看到审查报告、验证结果和干净 diff 之前，不 commit、不发布。"
+      }
+    ]
+  },
+  "participants": [
+    {
+      "id": "human",
+      "type": "external",
+      "label": "人"
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "Agent"
+    },
+    {
+      "id": "repo",
+      "type": "cloud",
+      "label": "博客仓库"
+    },
+    {
+      "id": "envs",
+      "type": "database",
+      "label": "GPU 环境"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 315,
+      "label": "对齐与大纲"
+    },
+    {
+      "from": 325,
+      "to": 490,
+      "label": "写作与验证"
+    },
+    {
+      "from": 500,
+      "to": 650,
+      "label": "打磨与发布"
+    }
+  ],
+  "messages": [
+    {
+      "id": "brief",
+      "from": "human",
+      "to": "agent",
+      "y": 165,
+      "label": "主题 + 参考 + 限定",
+      "variant": "default"
+    },
+    {
+      "id": "read",
+      "from": "agent",
+      "to": "repo",
+      "y": 195,
+      "label": "读系列文章与仓库惯例",
+      "variant": "emphasis"
+    },
+    {
+      "id": "voice",
+      "from": "repo",
+      "to": "agent",
+      "y": 223,
+      "label": "文风 · 符号 · 图片风格",
+      "variant": "return"
+    },
+    {
+      "id": "menu",
+      "from": "agent",
+      "to": "human",
+      "y": 262,
+      "label": "大纲 + 合并 / 话题菜单",
+      "variant": "emphasis",
+      "note": "闸门 1 —— 先批准再动笔"
+    },
+    {
+      "id": "pick",
+      "from": "human",
+      "to": "agent",
+      "y": 296,
+      "label": "通过 / 打回（可多轮）",
+      "variant": "security"
+    },
+    {
+      "id": "draftmsg",
+      "from": "agent",
+      "to": "repo",
+      "y": 340,
+      "label": "写正文 + 代码块",
+      "variant": "default"
+    },
+    {
+      "id": "run",
+      "from": "agent",
+      "to": "envs",
+      "y": 372,
+      "label": "逐块跑代码：MPS · CUDA",
+      "variant": "default"
+    },
+    {
+      "id": "asserts",
+      "from": "envs",
+      "to": "agent",
+      "y": 402,
+      "label": "断言通过 / 失败",
+      "variant": "return"
+    },
+    {
+      "id": "figs",
+      "from": "agent",
+      "to": "repo",
+      "y": 452,
+      "label": "画 SVG · 插图 · 双主题检查",
+      "variant": "default"
+    },
+    {
+      "id": "auditmsg",
+      "from": "agent",
+      "to": "human",
+      "y": 520,
+      "label": "审查 + 验证报告 + 渲染页面",
+      "variant": "emphasis",
+      "note": "闸门 2 —— 先批准再发布"
+    },
+    {
+      "id": "approve",
+      "from": "human",
+      "to": "agent",
+      "y": 553,
+      "label": "hold / commit / publish",
+      "variant": "security"
+    },
+    {
+      "id": "ship",
+      "from": "agent",
+      "to": "repo",
+      "y": 585,
+      "label": "make check · commit（若被要求）",
+      "variant": "emphasis"
+    },
+    {
+      "id": "report",
+      "from": "agent",
+      "to": "human",
+      "y": 612,
+      "label": "报告：证据 + 可斟酌点",
+      "variant": "default"
+    }
+  ]
+}

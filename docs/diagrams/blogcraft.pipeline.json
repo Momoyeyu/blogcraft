@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "blogcraft · Writing pipeline",
+    "subtitle": "two human gates, everything verified in between",
+    "locale": "en",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1020,
+      430
+    ],
+    "legend": {
+      "mode": "hidden"
+    },
+    "output": "blogcraft.pipeline.html"
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [
+      40,
+      110
+    ],
+    "cols": 5,
+    "cellW": 140,
+    "cellH": 68,
+    "gapX": 60,
+    "gapY": 110
+  },
+  "components": [
+    {
+      "id": "intake",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 0,
+      "type": "frontend",
+      "label": "Task intake",
+      "sublabel": "mode · refs · scope · auth"
+    },
+    {
+      "id": "outline",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 1,
+      "type": "backend",
+      "label": "Outline",
+      "sublabel": "headings · merges · code slots"
+    },
+    {
+      "id": "gate1",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 2,
+      "type": "security",
+      "label": "Approve outline?",
+      "sublabel": "per-item decisions"
+    },
+    {
+      "id": "draft",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 3,
+      "type": "backend",
+      "label": "Draft",
+      "sublabel": "series voice · per-section code"
+    },
+    {
+      "id": "verify",
+      "size": [
+        140,
+        68
+      ],
+      "row": 0,
+      "col": 4,
+      "type": "backend",
+      "label": "Run the code",
+      "sublabel": "MPS · CUDA · asserts"
+    },
+    {
+      "id": "illustrate",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 4,
+      "type": "backend",
+      "label": "Illustrate",
+      "sublabel": "hand-drawn SVG · dual theme"
+    },
+    {
+      "id": "review",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 3,
+      "type": "backend",
+      "label": "Audit",
+      "sublabel": "facts · symbols · consistency"
+    },
+    {
+      "id": "wrap",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 2,
+      "type": "database",
+      "label": "Repo checks",
+      "sublabel": "make check · clean diff"
+    },
+    {
+      "id": "gate2",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 1,
+      "type": "security",
+      "label": "Publish?",
+      "sublabel": "hold · commit · publish"
+    },
+    {
+      "id": "report",
+      "size": [
+        140,
+        68
+      ],
+      "row": 1,
+      "col": 0,
+      "type": "frontend",
+      "label": "Report",
+      "sublabel": "evidence · judgment calls"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "01  ALIGN",
+      "wraps": [
+        "intake",
+        "outline"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "02  GATE",
+      "wraps": [
+        "gate1"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "03  WRITE",
+      "wraps": [
+        "draft",
+        "verify"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "04  POLISH",
+      "wraps": [
+        "illustrate",
+        "review"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "05  SHIP",
+      "wraps": [
+        "wrap",
+        "gate2",
+        "report"
+      ],
+      "pad": 20
+    }
+  ],
+  "connections": [
+    {
+      "id": "i-o",
+      "from": "intake",
+      "to": "outline"
+    },
+    {
+      "id": "o-g1",
+      "from": "outline",
+      "to": "gate1"
+    },
+    {
+      "id": "revise",
+      "from": "gate1",
+      "to": "outline",
+      "label": "revise",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "top",
+      "via": [
+        [
+          510,
+          74
+        ],
+        [
+          310,
+          74
+        ]
+      ]
+    },
+    {
+      "id": "g1-d",
+      "from": "gate1",
+      "to": "draft",
+      "label": "approved",
+      "variant": "emphasis"
+    },
+    {
+      "id": "d-v",
+      "from": "draft",
+      "to": "verify"
+    },
+    {
+      "id": "v-il",
+      "from": "verify",
+      "to": "illustrate"
+    },
+    {
+      "id": "il-r",
+      "from": "illustrate",
+      "to": "review"
+    },
+    {
+      "id": "r-w",
+      "from": "review",
+      "to": "wrap"
+    },
+    {
+      "id": "w-g2",
+      "from": "wrap",
+      "to": "gate2"
+    },
+    {
+      "id": "changes",
+      "from": "gate2",
+      "to": "review",
+      "label": "changes",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          310,
+          366
+        ],
+        [
+          710,
+          366
+        ]
+      ]
+    },
+    {
+      "id": "g2-rep",
+      "from": "gate2",
+      "to": "report",
+      "label": "approved",
+      "variant": "emphasis"
+    }
+  ]
+}
